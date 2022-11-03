@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,3 +49,13 @@ Route::middleware('auth:sanctum')->delete('/comment/{id}', [CommentController::c
 Route::get('/comment/{id}',[CommentController::class,'getComment']);
 Route::get('/comment',[CommentController::class,'comments']);
 Route::get('/comments/{id}',[CommentController::class,'postComments']);
+
+//RUTAS DE LIKES
+//Usuarios regitrados
+Route::middleware('auth:sanctum')->post('/like', [LikeController::class,'createLike']);
+Route::middleware('auth:sanctum')->delete('/like/{id}', [LikeController::class,'deleteLike']);
+//Sin registrarse
+Route::get('/like/{id}',[LikeController::class,'getLike']);
+Route::get('/like',[LikeController::class,'likes']);
+Route::get('/likes/{id}',[LikeController::class,'postLikes']);
+

@@ -101,7 +101,7 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         if (!$comment)
             return response()->noContent(404);
-        return response()->noContent(Response::HTTP_CREATED);
+            return response()->json(['data' => $comment]);
     }
     public function postComments($id, Request $request){
 
