@@ -4,10 +4,41 @@ __Api creada en [PHP](https://www.php.net/) para una red social de imágenes, co
 ## Estructura de la api  
 
 ### Users  
-Perfiles de usuario con roles (anonymous/user/admin)   
-
-"/users"              - __post__ - Registro de usuarios, encripta los passwords con SHA256  
-"/users/login"        - __post__  - Login de usuario  
-"/users"              - __get__  - Listado de todos los usuarios. Exclusivo admin  
-"/users/{id:[0-9]+}"  - __get__  - Detalles de un usuario en concreto.  
-"/users/{id:[0-9]+"   - __put__  - Editar un usuario. No se puede cambiar ID ni username. El role solo lo puede cambiar un admin 
+   
+/user	- GET - Devuelve el usuario actual      
+/user	- PUT - Modifica los datos del usuario actual   
+/users -	GET -	Devuelve todos los usuarios registrados   
+/login -	POST - Identificarse un usuario existente en la aplicación   
+/register -	POST - Registrar un usuario nuevo en la aplicación   
+/user/{id} - GET - Devuelve los datos del usuario escogido con el ID   
+        
+### Images   
+   
+/image - POST - Sube una imagen, solo para usuarios registrados    
+/image/{id} - GET - Devuelve el link donde está guardada una imagen   
+   
+### Posts   
+   
+/post - POST - Creación de un post   
+/post/{id} - PUT - Edición de un post escogido con el ID   
+/post/{id} - DELETE - Borrado del post con el ID correspondiente   
+/post/{id} - GET - Seleccionamos el post escogido con el ID   
+/post - GET - Devuelve todos los posts   
+   
+### Comments   
+   
+/comment - POST - Creación de un comentario   
+/comment/{id} - PUT - Edición de un comentario escogido con el ID   
+/comment/{id} - DELETE - Borrado del comentario con el ID correspondiente   
+/comment/{id} - GET - Seleccionamos el comentario escogido con el ID   
+/comment - GET - Devuelve todos los comentarios   
+/comments/{id} - GET - Devuelve todos los comentarios del post escogido con el ID   
+   
+### Likes   
+   
+/like - POST - Crear un like   
+/like/{id} - DELETE - Borrar el like escogido con el ID   
+/like/{id} - GET - Seleccionar un like escogido con el ID   
+/like - GET - Seleccionar todos los likes   
+/likes/{id} - GET - Seleccionar todos los likes de un post escogido con el ID   
+   
