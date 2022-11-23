@@ -1,7 +1,19 @@
 # laravel-uoc
 __Api creada en [PHP](https://www.php.net/) para una red social de imágenes, con comentarios y likes. Parte de servidor__  
    
-## Estructura de la api  
+## Puesta en marcha   
+   
+Instalar las dependencias 
+```bash
+composer install
+```
+   
+Arrancar el servidor
+```bash
+php artisan serve
+```
+   
+## Estructura de la api (prefijo /api/ antes de cada ruta)   
 
 ### Users  
    
