@@ -24,6 +24,10 @@ class PostController extends Controller
             $posts = Post::all();
         }
 
+        //Facilitar las busquedas
+        foreach ($posts as $post)
+            $post->all = $this->getPost($post->id)->original;
+
         return response()->json($posts);
     }
 
@@ -74,7 +78,16 @@ class PostController extends Controller
         $post = Post::find($id);
         if (!$post)
             return response()->noContent(404);
-        return response()->json(['data' => $post]);
+            
+        $user = User::find($post->user_id);
+        if (!$user)
+            return response()->noContent(404);
+        $image = Image::find($post->image_id);
+        if (!$image)
+            return response()->noContent(404);   
+        //Devolvemos Image y User para facilitar las búsquedas
+        return response()->json(['data' => $post,'user' => $user,'image' => $image]);
+
     }
     //Modificar post. No se puede moficiar usuario ni imagen 
     public function updatePost($id, Request $request){
@@ -123,4 +136,5 @@ class PostController extends Controller
         
         return response()->noContent(204);
     }
+
 }
