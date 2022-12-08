@@ -101,7 +101,10 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         if (!$comment)
             return response()->noContent(404);
-            return response()->json(['data' => $comment]);
+        $user = User::find($comment->user_id);
+        if (!$user)
+            return response()->noContent(404);
+        return response()->json(['data' => $comment, 'user' => $user]);
     }
     public function postComments($id, Request $request){
 
@@ -111,6 +114,11 @@ class CommentController extends Controller
 
         $comments = Comment::where('post_id',$id)->get();
 
+        foreach ($comments as $index=>$comment) {
+            $comment->all = $this->getComment($comment->id)->original;
+            $comments[$index] = $comment->all;  
+            }
+
         return response()->json($comments);
     }
     public function comments(Request $request){
@@ -119,6 +127,10 @@ class CommentController extends Controller
             $comments = Comment::where('reported',true)->get();
         else{
             $comments = Comment::all();
+        }
+        foreach ($comments as $index=>$comment) {
+        $comment->all = $this->getComment($comment->id)->original;
+        $comments[$index] = $comment->all;  
         }
 
         return response()->json($comments);
