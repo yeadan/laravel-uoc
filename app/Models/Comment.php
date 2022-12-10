@@ -12,7 +12,6 @@ class Comment extends Model
     protected $fillable = [ 
         'content',
         'reported',
-        'num_likes',
         'user_id',
         'reported_by',
         'post_id'

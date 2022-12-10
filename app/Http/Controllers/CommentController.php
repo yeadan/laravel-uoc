@@ -54,7 +54,7 @@ class CommentController extends Controller
              'reported_by' => $reported_by,
              'post_id' => $post_id]
          );
-         return response()->noContent(Response::HTTP_CREATED);
+         return response()->json(['data' => $comment, 'user' => $user], Response::HTTP_CREATED);
      }
      public function updateComment($id, Request $request)
      {
@@ -91,8 +91,6 @@ class CommentController extends Controller
         if (!$comment)
             return response()->noContent(404);
         
-        //borrar 
-        //Likes tb? 
         $comment->delete();
         
         return response()->noContent(204);
