@@ -55,7 +55,7 @@ class LikeController extends Controller
         $post->num_likes += 1;
         $post->save();
 
-        return response()->noContent(Response::HTTP_CREATED);
+        return response()->json(['data' => $likes],Response::HTTP_CREATED);
     }
     
     public function deleteLike($id){
