@@ -77,31 +77,34 @@ class UserController extends Controller
         return response()->json(['data' => $response]);      
     }
 
-    //Modificar los datos de usuario: Solo puede ese mismo usuario
-    public function updateUser(Request $request){
+    //Modificar los datos de usuario
+    public function updateUser($id, Request $request){
         
         //JSON invalido? error 400
         json_decode($request->getContent());
         if (json_last_error() != JSON_ERROR_NONE) {
             return response()->noContent(400);
         }
-        $user = $request->user();
+
+        $user = User::find($id);
+        if (!$user)
+            return response()->noContent(404);
         //Puede cambiar nombre, email y password
         $rules = [
-            'name' => 'unique:users',
             'email'    => 'unique:users'
         ];
 
-        $input     = $request->only('name', 'email','password');
+        $input     = $request->only('email');
         $validator = Validator::make($input, $rules);
 
-        if ($validator->fails()) {
+        if ($validator->fails() && $request->email != $user->email) {
             return response()->json([ 'error' => $validator->messages()], 400);
         }
 
         $user->email = $request->email;
         $user->name = $request->name;
-        $user->password = Hash::make($request->password);
+        if ($request->password)
+            $user->password = Hash::make($request->password);
         $user->save();
         
         return response()->noContent(204);

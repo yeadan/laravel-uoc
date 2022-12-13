@@ -18,7 +18,7 @@ use App\Http\Controllers\LikeController;
 //Usuarios registrados
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user(); });
-Route::middleware('auth:sanctum')->put('/user', [UserController::class,'updateUser']);
+Route::middleware('auth:sanctum')->put('/user/{id}', [UserController::class,'updateUser']);
 //Sin registrarse
 Route::get('/users',[UserController::class,'users']);
 Route::post('/login',[UserController::class,'login']);
