@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -138,8 +140,10 @@ class PostController extends Controller
             return response()->noContent(404);
         
         //borrar comentarios?
-        //Comment:whereIn('post_id',$post)->delete()
-        //Likes tb? imagenes?
+        Comment::whereIn('post_id',$post)->delete();
+        //Likes tb?
+        Like::whereIn('post_id',$post)->delete();
+
         $post->delete();
         
         return response()->noContent(204);
