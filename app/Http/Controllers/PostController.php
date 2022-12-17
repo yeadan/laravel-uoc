@@ -62,6 +62,9 @@ class PostController extends Controller
         $user = User::find($user_id);
         if (!$user)
             return response()->noContent(404);
+        $image = Image::find($image_id);
+        if (!$image)
+            return response()->noContent(404);   
 
         $post     = Post::create(
             ['title' => $title, 
@@ -73,6 +76,11 @@ class PostController extends Controller
             'reported_by' => $reported_by,
             'image_id' => $image_id]
         );
+
+    //Devolvemos Image y User para facilitar las búsquedas
+    return response()->json(['data' => $post,'user' => $user,'image' => $image]);
+
+        return response()->json(['data' => $post, 'user' => $user], Response::HTTP_CREATED);
     }
     public function getPost($id){
         $post = Post::find($id);
