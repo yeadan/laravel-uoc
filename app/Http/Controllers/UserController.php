@@ -68,11 +68,11 @@ class UserController extends Controller
                 $token = $user->createToken("example");
                 $response["msg"] = $token->plainTextToken;
             }else{
-                $response["msg"] = "Wrong Credentials.";
+                $response["msg"] = "Credenciales erróneas.";
                 return response()->json(['data' => $response], 401); 
             }
         }else{
-            return response()->noContent(404);
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
         }
         return response()->json(['data' => $response]);      
     }
