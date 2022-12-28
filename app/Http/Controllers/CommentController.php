@@ -102,7 +102,10 @@ class CommentController extends Controller
         $user = User::find($comment->user_id);
         if (!$user)
             return response()->noContent(404);
-        return response()->json(['data' => $comment, 'user' => $user]);
+        $post = Post::find($comment->post_id);
+        if (!$post)
+            return response()->noContent(404);
+        return response()->json(['data' => $comment, 'user' => $user, 'post' => $post]);
     }
     public function postComments($id, Request $request){
 
