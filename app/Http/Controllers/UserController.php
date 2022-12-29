@@ -67,9 +67,10 @@ class UserController extends Controller
             if(Hash::check($data->password,$user->password)){
                 $token = $user->createToken("example");
                 $response["msg"] = $token->plainTextToken;
+                $response["user"] = $user;
+
             }else{
-                $response["msg"] = "Credenciales erróneas.";
-                return response()->json(['data' => $response], 401); 
+                return response()->json(['error' => 'Credenciales erróneas'], 401); 
             }
         }else{
             return response()->json(['error' => 'Usuario no encontrado'], 404);
