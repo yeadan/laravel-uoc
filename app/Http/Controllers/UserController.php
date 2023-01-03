@@ -28,7 +28,7 @@ class UserController extends Controller
         $validator = Validator::make($input, $rules);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 400);
+            return response()->json(['error' => 'El usuario ya existe'], 400);
         }
         $name = $request->name;
         $email    = $request->email;
@@ -99,7 +99,7 @@ class UserController extends Controller
         $validator = Validator::make($input, $rules);
 
         if ($validator->fails() && $request->email != $user->email) {
-            return response()->json([ 'error' => $validator->messages()], 400);
+            return response()->json([ 'error' => 'Este email ya está en uso'], 400);
         }
 
         $user->email = $request->email;
