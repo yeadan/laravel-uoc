@@ -15841,3 +15841,26 @@ Did you mean one of these?
 #54 D:\\Programación\\Master UOC\\laravel-UOC\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Programaci\\xC3\\xB3...')
 #55 {main}
 "} 
+[2023-01-10 17:49:20] local.ERROR: Command "config:cachw" is not defined.
+
+Did you mean one of these?
+    config:cache
+    config:clear
+    event:cache
+    route:cache
+    view:cache {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"config:cachw\" is not defined.
+
+Did you mean one of these?
+    config:cache
+    config:clear
+    event:cache
+    route:cache
+    view:cache at D:\\Programación\\Master UOC\\laravel-UOC\\vendor\\symfony\\console\\Application.php:692)
+[stacktrace]
+#0 D:\\Programación\\Master UOC\\laravel-UOC\\vendor\\symfony\\console\\Application.php(259): Symfony\\Component\\Console\\Application->find('config:cachw')
+#1 D:\\Programación\\Master UOC\\laravel-UOC\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 D:\\Programación\\Master UOC\\laravel-UOC\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 D:\\Programación\\Master UOC\\laravel-UOC\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 D:\\Programación\\Master UOC\\laravel-UOC\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
