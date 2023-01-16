@@ -54,7 +54,7 @@ class CommentController extends Controller
              'reported_by' => $reported_by,
              'post_id' => $post_id]
          );
-         return response()->json(['data' => $comment, 'user' => $user], Response::HTTP_CREATED);
+         return response()->json(['data' => $comment, 'user' => $user, 'post' => $post], Response::HTTP_CREATED);
      }
      public function updateComment($id, Request $request)
      {
